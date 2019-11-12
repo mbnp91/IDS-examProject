@@ -3,7 +3,7 @@
 #include <joystick.h>
 #include <Position.h>
 
-Drone::Drone(String ssid, String password)
+Drone::Drone(String ssid, String password)                                     //Constructor for our drone 
 {
     this->ssid = ssid;
     this->password = password; 

@@ -1,6 +1,6 @@
 #include <ButtonListener.h>
 
-void ButtonListener::ButtonPressed()
+void ButtonListener::ButtonPressed() 
 {
     // this method must be defined
 

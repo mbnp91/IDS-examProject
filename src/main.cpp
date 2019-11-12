@@ -3,34 +3,33 @@
 #include <drone.h>
 #include <joystick.h>
 
-String ssid = "TELLO-FE2F50";
-String password = "";
+String ssid = "TELLO-FE2F50";                               //Creating a string that is the SSID (The drones identity)
+String password = "";                                       //Creating the password which is nothing
 
-Drone drone(ssid, password);
-Joystick joystick(15, 34, 35); // pins: btn, x, y
+Drone drone(ssid, password);                                //Making an instance of our drone class with the ssid and password as param
+Joystick joystick(15, 34, 35);                              //Making an instance of our joystick class with pinnumbers as our param (pins: btn, x, y)
 
-void setup()
+void setup()                                                //Setup function
 {
-  Serial.begin(9600);
-//& betyder - brug denne location
-  drone.joystick = &joystick; 
+  Serial.begin(9600);                                       //begins the serial connection at 9600 bits per second. The default setting on esp32 is the same              
+  drone.joystick = &joystick;                               //& means - use this location                            
 
-  for (size_t i = 0; i < 5; i++)
+  for (size_t i = 0; i < 5; i++)                            //We make sure that the program has started running with a counter in the console                      
   {
     Serial.println(i);
     delay(1000);
   }
 
-  joystick.addButtonListener(&drone);
+  joystick.addButtonListener(&drone);                       //Running the addButtonListener from the joystick class on the drone                          
   
-  drone.connect();
-  drone.setIp ("192.168.10.1");
+  drone.connect();                                          //Running the connect function from the drone class
+  drone.setIp ("192.168.10.1");                             //Running the setIp function from drone class with the drones default ip as param
 
   
 }
 
-void loop()
+void loop()                                                 //Loop function (runs aprox 60 times per second)
 {
-  joystick.loop();
-  drone.loop();
-} 
+  joystick.loop();                                          //Running the loop function from our joystick class
+  drone.loop();                                             //Running the loop function from our drone class
+}   
