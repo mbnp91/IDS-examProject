@@ -84,17 +84,36 @@ void Drone::loop()
     
     Position joystickPosition = this->joystick->getPosition();
     
-    if (joystickPosition.x != 0)
+    /*if (joystickPosition.x != 0)
     {
         if (joystickPosition.y != 0)
         {
+            this->sendCommand("right 50");
         Serial.print(joystickPosition.x);
-        this->sendCommand("right" + joystickPosition.x);
-        Serial.print(" ");
+        Serial.println("Turning right");
+        delay(1000);
+        this->sendCommand("left 50");
         Serial.println(joystickPosition.y);
-        this->sendCommand("left" + joystickPosition.y);
-        }
+        Serial.println("Turning left");
+        } 
+    }*/
+    
+    if (joystickPosition.x < -2000)
+    {
+        this->sendCommand("right 50");
+        Serial.print(joystickPosition.x);
+        Serial.println("Turning right");
+        delay(1000);
     }
+    if (joystickPosition.y >2000 )
+        {
+        this->sendCommand("left 50");
+        Serial.println(joystickPosition.y);
+        Serial.println("Turning left");
+        delay(1000);
+        } 
+    
+    
     
     
     /*
